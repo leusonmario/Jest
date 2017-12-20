@@ -5,8 +5,10 @@ language: java
 jdk:
   - oraclejdk8
 
+
+
 script:
-  - mvn clean cobertura:cobertura -Dtest=MultiSearchIntegrationTest#multipleSearchRequestsWithOneFaulty -DfailIfNoTests=false
+  - mvn clean cobertura:cobertura -Dtest=MultiSearchIntegrationTest#multipleSearchRequests -DfailIfNoTests=false
 
 before_deploy:
 - tar -zcvf coverage-result.tar.gz /home/travis/build/leusonmario/Jest/target/site/cobertura
