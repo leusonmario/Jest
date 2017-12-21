@@ -74,6 +74,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.7.2</version>
                 <configuration>
+<testFailureIgnore>true</testFailureIgnore>
                     <excludes>
                         <exclude>**/*WebTest.java</exclude>
                     </excludes>
@@ -113,6 +114,17 @@
                     </execution>
                 </executions>
             </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+              <format>xml</format>
+              <maxmem>256m</maxmem>
+              <!-- aggregated reports for multi-module projects -->
+              <aggregate>true</aggregate>
+          </configuration>
+         </plugin>
         </plugins>
         <resources>
             <resource>
@@ -246,6 +258,7 @@
                                     <goal>test</goal>
                                 </goals>
                                 <configuration>
+<testFailureIgnore>true</testFailureIgnore>
                                     <excludes>
                                         <exclude>none</exclude>
                                     </excludes>
@@ -253,7 +266,18 @@
                             </execution>
                         </executions>
                     </plugin>
-                </plugins>
+                <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+              <format>xml</format>
+              <maxmem>256m</maxmem>
+              <!-- aggregated reports for multi-module projects -->
+              <aggregate>true</aggregate>
+          </configuration>
+         </plugin>
+        </plugins>
             </build>
         </profile>
         <profile>
@@ -284,7 +308,18 @@
                         <artifactId>maven-release-plugin</artifactId>
                         <version>2.3.2</version>
                     </plugin>
-                </plugins>
+                <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+              <format>xml</format>
+              <maxmem>256m</maxmem>
+              <!-- aggregated reports for multi-module projects -->
+              <aggregate>true</aggregate>
+          </configuration>
+         </plugin>
+        </plugins>
             </build>
         </profile>
     </profiles>
