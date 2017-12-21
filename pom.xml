@@ -103,6 +103,7 @@
 <testFailureIgnore>true</testFailureIgnore>
 <testFailureIgnore>true</testFailureIgnore>
 <testFailureIgnore>true</testFailureIgnore>
+<testFailureIgnore>true</testFailureIgnore>
                     <excludes>
                         <exclude>**/*WebTest.java</exclude>
                     </excludes>
@@ -169,6 +170,17 @@
                 <version>3.1.0</version>
             </plugin>
 
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+              <format>xml</format>
+              <maxmem>256m</maxmem>
+              <!-- aggregated reports for multi-module projects -->
+              <aggregate>true</aggregate>
+          </configuration>
+         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>cobertura-maven-plugin</artifactId>
@@ -433,6 +445,7 @@
 <testFailureIgnore>true</testFailureIgnore>
 <testFailureIgnore>true</testFailureIgnore>
 <testFailureIgnore>true</testFailureIgnore>
+<testFailureIgnore>true</testFailureIgnore>
                                     <excludes>
                                         <exclude>none</exclude>
                                     </excludes>
@@ -442,6 +455,17 @@
                         </executions>
                     </plugin>
                 <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+              <format>xml</format>
+              <maxmem>256m</maxmem>
+              <!-- aggregated reports for multi-module projects -->
+              <aggregate>true</aggregate>
+          </configuration>
+         </plugin>
+        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>cobertura-maven-plugin</artifactId>
           <version>2.7</version>
@@ -517,6 +541,17 @@
                         <version>2.5.2</version>
                     </plugin>
                 <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>cobertura-maven-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+              <format>xml</format>
+              <maxmem>256m</maxmem>
+              <!-- aggregated reports for multi-module projects -->
+              <aggregate>true</aggregate>
+          </configuration>
+         </plugin>
+        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>cobertura-maven-plugin</artifactId>
           <version>2.7</version>
