@@ -1,12 +1,25 @@
+
+sudo: required
 language: java
-sudo: false
 
-env:
-  global:
-    - SONATYPE_USERNAME=searchboxadmin
-    - secure: "BBvuAZE4hahFMuOnxpyHtU3CETtXAj0KJ5vbN2WeiJXpnLt0Ct/IbwN2SFMc6iTEmJSzG6Zkk8zTrRajGNM+rPv74rAuYBXDmiBVwJVLX11kLr4Y+S+LNkik1wrUCZjEO6t1kcVq6syYv7rL9Tb+28enIDI+3qvTRNnrNTo86k8="
+jdk:
+  - oraclejdk8
 
-after_success:
-  - mvn clean cobertura:cobertura coveralls:report
-  - python addServer.py
-  - mvn clean deploy --settings ~/.m2/mySettings.xml
+script:
+  - mvn clean cobertura:cobertura -Dtest=BulkIntegrationTest#bulkOperationWithCustomGson -DfailIfNoTests=false
+
+before_deploy:
+- tar -zcvf coverage-result.tar.gz /home/travis/build/leusonmario/Jest/target/site/cobertura
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "YJbEEfbWWZFCa1CSHn1eC9yneKB4QLOuzjhH6bWnf+klRDC6B+BLTh/c7O/1ggUHm4zcM33FQsa90MXUwzkjg/X6CKoj5PHGFWEQCwhz/RhKPjE6cO6uR//hJ+3HESkYA/g4rUu0N2g//kQmYH5AYQBXZaxMj8Gs6u17BOSHJQ0d7q938r1xPn9cLIVACJ+2nFtTgIW/3QfCBCzeEkVVNN1E6tyCBFLqrvC6SvBAPlMVZ3QtCFmNhBI9T1Jq0fqonxASX0In+Zcmqd2OrfytwdywrGjoAltHrQ78A5HRaawE285qs1NP6eF2M2+OAvP31pElcQaM7dM4ciwB21bMZ33ixmDApv4EPFxQZt7VN4oMUtj48Go97ubNi3kR26cO+/zJtFH4KDehPNQnCeZSEaCRBLlkNAS18UP2unmsOcUw3mSr3O4Z2iWaSyYabd8C3p1WxkIVmiCcqWol6EcjEavDjr0x8X9iSKmoETJJ0o0sXakp55v/LjOabw5gGJgIclmdCao5yIw7cNcb13Zq47SSuRNQDdwRK8uA1Ek3N/COSD4j/AvcZWBv7zPhJtcRDmAQ+T6rYEsN6Hp1Qw5JnFuy2Ex936QmWjsVwdVpP7g3dad00uugcu2ZVa2acYBF2IZZ/PFk48ScUL1REM23P55AEkyaSk9jBbePLTOJYf0="
+
+
+  file: coverage-result.tar.gz
+  file_glob: true
+  overwrite: true
+  skip_cleanup: true
+  on:
+    tags: true
